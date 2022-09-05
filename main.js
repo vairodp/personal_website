@@ -172,7 +172,7 @@ class Window extends HTMLElement {
     render() {
         this.shadow.innerHTML = "";
         const style = document.createElement("style");
-        style.innerText = `:host{position: fixed;top: ${this.top}px;left: ${this.left}px;z-index: ${this.index};min-width: 320px;min-height: 240px;background-color: white;display: none;border: solid 2px #666;box-shadow: 5px 5px 5px;resize: both;overflow: auto;}#buttons{position: absolute;right: 0;top: 0;}#window{display: flex;flex-flow: column;height: 100%;}#top{flex: 0 1 auto;width: 100%;text-align: center;background-color: #888;cursor: move;position: relative;}#top > div > button {height: 25px;}#winTitle{line-height: 25px;cursor: inherit;}#content{flex: 1 1 auto;overflow: auto;position: relative;min-height: 205px;}#border{height: 10px;flex: 0 0 auto;}    `;
+        style.innerText = `:host{position: fixed;top: ${this.top}px;left: ${this.left}px;z-index: ${this.index};background-color: white;display: none;border: solid 2px #666;box-shadow: 5px 5px 5px;resize: both;overflow: auto;}#buttons{position: absolute;right: 0;top: 0;}#window{display: flex;flex-flow: column;height: 100%;}#top{flex: 0 1 auto;width: 100%;text-align: center;background-color: #888;cursor: move;position: relative;}#top > div > button {height: 25px;}#winTitle{line-height: 25px;cursor: inherit;}#content{flex: 1 1 auto;overflow: auto;position: relative;min-height: 205px;}#border{height: 10px;flex: 0 0 auto;}    `;
         const _window = document.createElement("div");
         _window.id = "window", _window.addEventListener("click", () => {
             this.bringFront()
