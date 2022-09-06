@@ -14,4 +14,22 @@ const time = () => {
 	setTimeout( time, 5000 )
 }
 
+function setModifiedDate() {
+	if (document.getElementById('last-modified')) {
+		fetch("https://api.github.com/repos/vairodp/placeholder/branches/master")
+			.then((response) => {
+				return response.json();
+			})
+			.then((commits) => {
+				var modified = commits.commit.commit.author.date.slice(0, 10);
+				if (modified != "{{ page.date | date: '%Y-%m-%d' }}")
+				{
+					string = "Site last updated on " + modified;
+					document.getElementById('last-modified').innerHTML = string.italics();  
+				}
+			});
+}
+}
+
+setModifiedDate()
 time()
