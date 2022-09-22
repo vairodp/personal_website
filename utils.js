@@ -8,12 +8,14 @@ String.prototype.pad = function(size){
 	return s
 }
 
+// Setting the clock
 const time = () => {
 	const date = new Date();
 	$('#clock').innerHTML = `${date.getHours().toString().pad(2)}:${date.getMinutes().toString().pad(2)}`
 	setTimeout( time, 5000 )
 }
 
+// Function to set the date of the last update 
 function setModifiedDate() {
 	if (document.getElementById('last-modified')) {
 		fetch("https://api.github.com/repos/vairodp/placeholder/branches/master")
@@ -30,6 +32,22 @@ function setModifiedDate() {
 			});
 }
 }
+
+// Function to manage the loading screen
+function removeFadeOut(el, speed) {
+	var seconds = speed / 1000;
+	el.style.transition = "opacity " + seconds + "s ease";
+
+	el.style.opacity = 0;
+	setTimeout(function () {
+		el.parentNode.removeChild(el);
+	}, speed);
+}
+
+window.onload = (event) => {
+	console.log('page is fully loaded');
+	removeFadeOut(document.getElementById("loading"), 1000);
+};
 
 setModifiedDate()
 time()
