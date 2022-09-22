@@ -16,13 +16,15 @@
     <link rel="icon" href="./sources/favicon.png" sizes="256x256">
     <link rel="preload" as="image" href="./sources/favicon.png">
     <link rel="stylesheet" type="text/css" href="./style.css">
-    <script src="./loader.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="./main.js"></script>
     
 </head>
 <body data-new-gr-c-s-check-loaded="14.1076.0" data-gr-ext-installed="" cz-shortcut-listen="true">
 
-<div id="loader"></div>
+<div id="loading">
+    <img id="loading-image" src="./sources/loading-gif.gif" alt="Loading..." height="150px" width="150px"/>
+</div>
 
 <fos-desktop id="mainDesktop">
     <fos-bar>
@@ -77,9 +79,15 @@
     </fos-icon>
 
 </fos-desktop>
-<script src="./clock.js"></script>
-<div id="fgbg"></div>
 
+<div id="fgbg"></div>
+<script>
+    $(window).on('load', function () {
+        console.log("loaded");
+        document.getElementById("loading").classList.add("fadeOut");
+    }) 
+</script>
+<script src="./clock.js"></script>
 </body>
 <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>   
 </html>
