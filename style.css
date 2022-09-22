@@ -223,3 +223,7 @@ fos-menu::part(window) {
     overflow: visible;
     background: #fff url('https: //c.tenor.com/5JWmM_Hd3rIAAAAC/loading-windows98.gif') no-repeat center center;
 }
+
+p, h1, h2, h3, h4, h5, h6{
+    padding: 10px;
+}
