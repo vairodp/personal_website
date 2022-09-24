@@ -120,14 +120,17 @@ fos-icon {
 }
 
 fos-window {
-    border-color: silver
+    border-color: silver;
 }
 
 fos-window::part(top) {
     background-color: #010081;
     color: #fff;
     font-weight: 700;
-    line-height: 1.2em
+    line-height: 1.2em;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 fos-window::part(buttons) {
