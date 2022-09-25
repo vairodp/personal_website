@@ -35,7 +35,7 @@
             <br>
             <fos-menu-item href="projects" tabindex="0"><img src="./sources/projects.png">Projects</fos-menu-item>
             <br>
-            <fos-menu-item href="news" tabindex="0"><img src="./sources/news.png">News</fos-menu-item>
+            <fos-menu-item href="Timeline" tabindex="0"><img src="./sources/news.png">News</fos-menu-item>
             <br>
             <fos-menu-item onclick="window.open('https://www.vairodp.com','_self');" href="recursion" tabindex="0"><img src="./sources/recursion.png">Recursion</fos-menu-item>
             <br>
@@ -63,6 +63,47 @@
         <img src="./sources/pointing arrow.svg" width="100" height="50">
         Reach out!
     </fos-window>
+
+    <fos-window name="Timeline" title="News" id="Timeline"
+        style="display: block; left: 120px; top: 220px; width: 500px; height: 400px;overflow: auto;">
+        
+        <div class="timeline-area">
+            <div class="container">
+                <div class="all-timelines">
+                    <div class="single-timeline d-flex-2">
+                        <div class="timeline-blank"></div>
+                        <div class="timeline-text d-flex-2">
+                            <span>
+                                <h6>January 16, 2022 (6 months)</h6> — <img style='display:inline;' src='https://flagcdn.com/16x12/se.png' /> Completed Exchange Program at the Mid Sweden University
+                            </span>
+                            <div class="t-square"></div>
+                        </div>
+                    </div>
+                    <!--SINGLE TIMELINE-->
+                    <div class="single-timeline d-flex-2">
+                        <div class="timeline-blank"></div>
+                        <div class="timeline-text d-flex-2">
+                            <span>
+                                <h6>October 15, 2020 </h6> — 🎓 Started the Master Degree in Artificial Intelligence at the University of Bologna
+                            </span>
+                            <div class="t-square"></div>
+                        </div>
+                    </div>
+                    <!--SINGLE TIMELINE-->
+                    <div class="single-timeline d-flex-2">
+                        <div class="timeline-blank"></div>
+                        <div class="timeline-text d-flex-2">
+                            <span>
+                                <h6>October 14, 2020 </h6> — 📜 Graduated with the Bachelor Degree in Computer Science at the University of Bologna
+                            </span>
+                            <div class="t-square"></div>
+                        </div>
+                    </div>                 
+        </div>
+        </div>
+        </div>
+    </fos-window>
+
 
     <fos-icon ondblclick="window.open('https://github.com/vairodp','mywindow');" style="cursor: pointer;" name="Github" tabindex="0">
         <img src="./sources/github_icon.png" alt="Github" title="Github">

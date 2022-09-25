@@ -45,8 +45,11 @@ function removeFadeOut(el, speed) {
 }
 
 window.onload = (event) => {
+	document.getElementById('Timeline').style.display = 'none';
 	console.log('page is fully loaded');
 	removeFadeOut(document.getElementById("loading"), 1000);
+	//removeFadeOut(document.getElementById("Timeline"), 1000);
+	
 };
 
 setModifiedDate()
