@@ -456,3 +456,30 @@ p, h1, h2, h3, h4, h5, h6{
         top: 32px;
     }
 }
+
+#parent{
+    display: flex;
+}
+
+#child1{
+    width: 100px;
+}
+
+#child2{
+    flex: 1;
+}
+
+#imgproject {
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+}
+
+#nameproject {
+    margin-left: 10px;
+}
+
+#descriptionproject {
+    margin-left: 10px;
+    font-style: italic;
+}
