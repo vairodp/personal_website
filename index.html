@@ -58,6 +58,16 @@
         <p>Start exploring this site by clicking on "Start" at the bottom left!</p>
     </fos-window>
 
+    <fos-window name="calendly" title="Calendly"
+    style="display: block; left: 900px; top:900px; width: 300px; height: 150px;">
+    <div style="display: flex; align-items: center;">
+        <a href="https://calendly.com/vairodp/30min" style="padding: 10px;">
+            <img src="./sources/calendly.png" alt="Link calendly" width="100" height="100">
+        </a>
+        <p style="margin: 0;">← Let's talk!</p>
+    </div>
+    </fos-window>
+    
     <fos-window name="contacts" title="Contacs"
         style="display: block; left: 120px; top: 120px; width: 300px; height: 120px; ">
         <img src="./sources/pointing arrow.svg" width="100" height="50">
@@ -214,6 +224,20 @@
         <hr style="height:10px;border:none;color:#333;background-color:#333;" />
         <!-- Single project-->
         <div id="parent">
+            <div id="child1">
+                <a href="https://github.com/hwchase17/langchain">
+                <img src="./sources/projects-logo/langchain.png" id="imgproject">
+                </a>    
+            </div>
+            <div id="child2">
+                <h2 id="nameproject">LangChain</h2>
+                <p id="descriptionproject">Framework designed to simplify the creation of applications using large language models. Im contributing actively from February 2023.</p>
+            </div>
+            </div>
+            <div style="clear: left;"></div>
+            <hr>
+        <!-- Single project-->
+        <div id="parent">
         <div id="child1">
             <a href="https://github.com/openai/gym">
             <img src="./sources/projects-logo/logo-gym.png" id="imgproject">
@@ -338,7 +362,6 @@
     <fos-icon ondblclick="window.open('mailto:vairo.dp@gmail.com','mywindow');" style="cursor: pointer;"name="Mail" tabindex="0">
         <img src="./sources/email_icon.png" alt="Mail" title="Mail">
     </fos-icon>
-
 </fos-desktop>
 
 <div id="fgbg"></div>
