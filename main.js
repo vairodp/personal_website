@@ -172,7 +172,7 @@ class Window extends HTMLElement {
     render() {
         this.shadow.innerHTML = "";
         const style = document.createElement("style");
-        style.innerText = `:host{position: fixed;top: ${this.top}px;left: ${this.left}px;z-index: ${this.index};background-color: white;display: none;border: solid 2px #666;box-shadow: 5px 5px 5px;resize: both;}#buttons{position: absolute;right: 0;top: 0;}#window{display: flex;flex-flow: column;height: 100%;}#top{flex: 0 1 auto;width: 100%;text-align: center;background-color: #888;cursor: move;position: relative;}#top > div > button {height: 25px;}#winTitle{line-height: 25px;cursor: inherit;}#content{flex: 1 1 auto;position: relative;min-height: 205px;overflow: auto;}#border{height: 10px;flex: 0 0 auto;}    `;
+        style.innerText = `:host{position: fixed;top: ${this.top}px;left: ${this.left}px;z-index: ${this.index};background-color: white;display: none;border: solid 2px #666;box-shadow: 5px 5px 5px;}#buttons{position: absolute;right: 0;top: 0;}#window{display: flex;flex-flow: column;height: 100%;}#top{flex: 0 1 auto;width: 100%;text-align: center;background-color: #888;cursor: move;position: relative;}#top > div > button {height: 25px;}#winTitle{line-height: 25px;cursor: inherit;}#content{flex: 1 1 auto;position: relative;min-height: 205px;overflow: auto;}#border{height: 10px;flex: 0 0 auto;}.rh{position:absolute;z-index:1000;}.rh-n{top:-3px;left:8px;right:8px;height:6px;cursor:n-resize;}.rh-s{bottom:-3px;left:8px;right:8px;height:6px;cursor:s-resize;}.rh-e{top:8px;right:-3px;bottom:8px;width:6px;cursor:e-resize;}.rh-w{top:8px;left:-3px;bottom:8px;width:6px;cursor:w-resize;}.rh-ne{top:-3px;right:-3px;width:12px;height:12px;cursor:ne-resize;}.rh-nw{top:-3px;left:-3px;width:12px;height:12px;cursor:nw-resize;}.rh-se{bottom:-3px;right:-3px;width:12px;height:12px;cursor:se-resize;}.rh-sw{bottom:-3px;left:-3px;width:12px;height:12px;cursor:sw-resize;}    `;
         const _window = document.createElement("div");
         _window.id = "window", _window.addEventListener("click", () => {
             this.bringFront()
@@ -204,7 +204,42 @@ class Window extends HTMLElement {
         const slot = document.createElement("slot");
         content.appendChild(slot);
         const border = document.createElement("div");
-        border.id = "border", _window.appendChild(top), _window.appendChild(content), _window.appendChild(border), this.shadow.appendChild(style), this.shadow.appendChild(_window)
+        border.id = "border", _window.appendChild(top), _window.appendChild(content), _window.appendChild(border), this.shadow.appendChild(style), this.shadow.appendChild(_window);
+        const edges = [
+            ["n",  {top:1}], ["s",  {bottom:1}], ["e",  {right:1}], ["w",  {left:1}],
+            ["ne", {top:1,right:1}], ["nw", {top:1,left:1}],
+            ["se", {bottom:1,right:1}], ["sw", {bottom:1,left:1}],
+        ];
+        const MIN_W = 200, MIN_H = 150;
+        for (const [dir, edge] of edges) {
+            const h = document.createElement("div");
+            h.className = "rh rh-" + dir;
+            h.addEventListener("mousedown", (e) => {
+                if (this.fixed) return;
+                e.stopPropagation(); e.preventDefault();
+                this.bringFront();
+                const r = this.getBoundingClientRect();
+                const sx = e.clientX, sy = e.clientY;
+                const sT = r.top, sL = r.left, sW = r.width, sH = r.height;
+                const onMove = (ev) => {
+                    let nT = sT, nL = sL, nW = sW, nH = sH;
+                    const dx = ev.clientX - sx, dy = ev.clientY - sy;
+                    if (edge.right)  nW = Math.max(MIN_W, sW + dx);
+                    if (edge.bottom) nH = Math.max(MIN_H, sH + dy);
+                    if (edge.left)   { nW = Math.max(MIN_W, sW - dx); nL = sL + (sW - nW); }
+                    if (edge.top)    { nH = Math.max(MIN_H, sH - dy); nT = sT + (sH - nH); }
+                    this.style.top = nT + "px"; this.style.left = nL + "px";
+                    this.style.width = nW + "px"; this.style.height = nH + "px";
+                };
+                const onUp = () => {
+                    document.removeEventListener("mousemove", onMove);
+                    document.removeEventListener("mouseup", onUp);
+                };
+                document.addEventListener("mousemove", onMove);
+                document.addEventListener("mouseup", onUp);
+            });
+            this.shadow.appendChild(h);
+        }
     }
 }
 customElements.define("fos-window", Window);
@@ -276,7 +311,7 @@ class Menu extends HTMLElement {
         super(), this.shadow = this.attachShadow({
             mode: "open"
         }), this.open = (e => {
-            "keyCode" in e && 13 !== e.keyCode || (this.visible = !0)
+            "keyCode" in e && 13 !== e.keyCode || (this.visible = !this.visible)
         }), this.addEventListener("click", this.open), this.addEventListener("keydown", this.open), document.body.addEventListener("click", e => {
             "fos-menu" !== e.target.localName && (this.visible = !1)
         })
