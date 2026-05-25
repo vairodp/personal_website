@@ -20,7 +20,7 @@ class Bar extends HTMLElement {
         !val || "top" !== val && "bottom" !== val ? this.removeAttribute("position") : this.setAttribute("position", val)
     }
     render() {
-        this.shadow.innerHTML = `<style>:host{position: absolute;${this.position}: 0;left: 0;z-index: 1000;background-color: #AAA;width: 100%;height: 40px;display: flex;align-items: center;justify-content: flex-start;box-shadow: 0px 0px 5px black;box-sizing: border-box;padding-left: 10px;}</style><slot></slot>`
+        this.shadow.innerHTML = `<style>:host{position: absolute;${this.position}: 0;left: 0;z-index: 100000;background-color: #AAA;width: 100%;height: 40px;display: flex;align-items: center;justify-content: flex-start;box-shadow: 0px 0px 5px black;box-sizing: border-box;padding-left: 10px;}</style><slot></slot>`
     }
 }
 customElements.define("fos-bar", Bar);
@@ -340,7 +340,7 @@ class Menu extends HTMLElement {
         val ? this.setAttribute("name", val) : this.removeAttribute("name")
     }
     render() {
-        this.shadow.innerHTML = "<style>:host{display: inline-block;cursor: default;}#menu{display: " + (this.visible ? "block" : "none") + ";position: absolute;" + (this.bar ? this.bar.position : "bottom") + ": 40px;background-color: #AAA;padding: 1em;border: solid 1px black;border-" + (this.bar ? this.bar.position : "bottom") + `: 0;}#title:hover{color: gray;}</style><div><div id="title" part="title">${this.name}</div><div id="menu" part="window"><slot></slot></div></div>`
+        this.shadow.innerHTML = "<style>:host{display: inline-block;cursor: default;}#menu{display: " + (this.visible ? "block" : "none") + ";position: absolute;z-index: 10000;" + (this.bar ? this.bar.position : "bottom") + ": 40px;background-color: #AAA;padding: 1em;border: solid 1px black;border-" + (this.bar ? this.bar.position : "bottom") + `: 0;}#title:hover{color: gray;}</style><div><div id="title" part="title">${this.name}</div><div id="menu" part="window"><slot></slot></div></div>`
     }
 }
 customElements.define("fos-menu", Menu);
